@@ -137,3 +137,40 @@ pymobiledevice3 still has to be installed on the machine running it.
 | `Device is password protected` / `DeviceLocked` | Unlock the phone and retry |
 | `Failed to start service` | Enable Developer Mode and click Auto-mount DDI |
 | `Device is not connected` | Phone not visible: check List devices / Check tunnel, see Wi-Fi notes |
+
+## Potential to do
+
+Ideas that might be added later, with no promises on whether or when:
+
+- **Always-on station**: Spoofer could run around the clock on a Raspberry Pi or an old PC with an old
+  iPad/iPhone plugged in over USB, so a location or route keeps playing without tying up a main computer.
+  It would probably need:
+  - Headless mode: start a location, route or scenario from the command line or a config file, without the window
+  - Linux support (Raspberry Pi OS): run tunneld as a system service in place of the Windows-only
+    "Start tunnel (admin)" button
+  - Start on boot and recover by itself: re-mount the DDI after the device reboots, reconnect after USB drops
+  - Remote control: a small web page on the local network to change the location or route and see the status
+  - Setup guide: wiring, powered USB hub, keeping the device charged, and stopping the device from sleeping
+
+## Credits
+
+Spoofer is a front end; the hard parts are done by these projects and services:
+
+- **[pymobiledevice3](https://github.com/doronz88/pymobiledevice3)** by doronz88 and contributors
+  (GPL-3.0): all communication with the iPhone, including location simulation and the iOS 17+ tunnel.
+- **[OpenStreetMap](https://www.openstreetmap.org/copyright)**: map data © OpenStreetMap contributors,
+  available under the [Open Database License](https://opendatacommons.org/licenses/odbl/). Used for the
+  map tiles, address search and every route.
+- **[Nominatim](https://nominatim.org/)**: address search, via the OpenStreetMap Foundation's public server.
+- **[FOSSGIS e.V.](https://www.fossgis.de/)**: hosts the free public routing servers Spoofer uses:
+  - [OSRM](https://github.com/Project-OSRM/osrm-backend) for driving, cycling and fallback walking routes
+  - [Valhalla](https://github.com/valhalla/valhalla) for walking routes on footpaths and trails
+- **[TkinterMapView](https://github.com/TomSchimansky/TkinterMapView)** by Tom Schimansky (CC0): the map widget.
+- **[Requests](https://github.com/psf/requests)** (Apache-2.0) and **[Pillow](https://github.com/python-pillow/Pillow)**
+  (MIT-CMU): tile downloading and image handling for the map.
+- **[PyInstaller](https://pyinstaller.org/)** (GPL-2.0 with bootloader exception): builds `Spoofer.exe`.
+
+Please respect these services' usage policies
+([OSM tiles](https://operations.osmfoundation.org/policies/tiles/),
+[Nominatim](https://operations.osmfoundation.org/policies/nominatim/)). Spoofer sends an identifying
+User-Agent, limits address searches to one per second and caches map tiles to keep its load light.
