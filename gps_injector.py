@@ -1,8 +1,8 @@
 """
-Spoofer - set a simulated GPS location on an iOS device for testing location-aware apps.
+Globe Ghost - set a simulated GPS location on an iOS device for testing location-aware apps.
 
 Entry point only; the app lives in the spoofer/ package (see spoofer/__init__.py for a map of it).
-Run with:  python gps_injector.py      Build with:  pyinstaller Spoofer.spec
+Run with:  python gps_injector.py      Build with:  pyinstaller Ghost.spec
 """
 
 import os
